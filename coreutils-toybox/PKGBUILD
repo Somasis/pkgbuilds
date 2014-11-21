@@ -1,0 +1,49 @@
+# $Id: PKGBUILD 217740 2014-07-22 22:49:21Z seblu $
+# Maintainer:  Sébastien "Seblu" Luttringer
+# Contributor:  Bartłomiej Piotrowski <bpiotrowski@archlinux.org>
+# Contributor: Allan McRae <allan@archlinux.org>
+# Contributor: judd <jvinet@zeroflux.org>
+
+pkgname=coreutils-toybox
+pkgver=8.23
+pkgrel=1
+pkgdesc='The basic file, shell and text manipulation utilities of the GNU operating system - only includes what toybox does not'
+arch=('i686' 'x86_64')
+license=('GPL3')
+url='http://www.gnu.org/software/coreutils'
+groups=('base')
+depends=('glibc' 'pam' 'acl' 'gmp' 'libcap' 'openssl')
+source=("ftp://ftp.gnu.org/gnu/coreutils/coreutils-$pkgver.tar.xz")
+md5sums=('abed135279f87ad6762ce57ff6d89c41')
+
+build() {
+  cd coreutils-$pkgver
+  ./configure \
+      --prefix=/usr \
+      --libexecdir=/usr/lib
+  make
+}
+
+package() {
+  cd coreutils-$pkgver
+  make DESTDIR="$pkgdir" install
+  IFS=$'\n'
+  for file in $(find "$pkgdir" -type f);do
+    case "$file" in
+      */tr)
+      true
+      ;;
+      *expr*)
+      true
+      ;;
+      */users)
+      true
+      ;;
+      *)
+      rm "$file"
+      ;;
+    esac
+  done
+}
+
+# vim:set ts=2 sw=2 et:

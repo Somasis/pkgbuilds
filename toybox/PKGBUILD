@@ -1,0 +1,57 @@
+# Maintainer: Kylie McClain <somasissounds@gmail.com>
+
+pkgname=toybox
+pkgver=0.5.0
+pkgrel=1
+pkgdesc="A BSD-licensed alternative to busybox"
+arch=('i686' 'x86_64' 'armv5' 'armv6' 'armv7')
+license=('BSD')\
+url="http://landley.net/toybox/"
+#makedepends=('')
+source=('toybox.tar.bz2::http://landley.net/toybox/downloads/$pkgname-$pkgver.tar.bz2' 'config')
+provides=('acpi' 'coreutils' 'diffutils' 'findutils' 'util-linux=2.23' 'procps-ng' 'inetutils' 'usbutils' 'grep' 'patch' 'which' 'systemd-sysvcompat' 'tar' 'rfkill' 'cpio')
+replaces=('acpi' 'coreutils' 'diffutils' 'findutils' 'util-linux>=2.23' 'procps-ng' 'inetutils' 'usbutils' 'grep' 'patch' 'which' 'systemd-sysvcompat' 'tar' 'rfkill' 'cpio')
+conflicts=('acpi' 'coreutils' 'diffutils' 'findutils' 'util-linux>=2.23' 'procps-ng' 'inetutils' 'usbutils' 'grep' 'patch' 'which' 'systemd-sysvcompat' 'tar' 'rfkill' 'cpio')
+shim_utils=('vdir')
+
+build() {
+    cd "$srcdir/$pkgname-$pkgver"
+    cp "$startdir/config" "$srcdir/$pkgname-$pkgver/.config"
+    # make menuconfig
+    make
+}
+
+package() {
+    msg "Making directories"
+    mkdir -p "$pkgdir/usr/share/licenses/$pkgname"
+    mkdir -p "$pkgdir/usr/bin"
+
+    msg "Making shim utils..."
+    for shim_util in ${shim_utils[@]};do
+        msg "\`$shim_util\`..."
+        make_$shim_util > "$pkgdir/usr/bin/$shim_util"
+        chmod 755 "$pkgdir/usr/bin/$shim_util"
+    done
+
+    cd "$srcdir/$pkgname-$pkgver"
+    #make install
+    install -m755 "$srcdir/$pkgname-$pkgver/$pkgname" "$pkgdir/usr/bin/"
+    cp "$srcdir/$pkgname-$pkgver/LICENSE" "$pkgdir/usr/share/licenses/toybox/"
+    for i in $($pkgdir/usr/bin/toybox); do
+        ln -s "/usr/bin/toybox" "$pkgdir/usr/bin/$i"
+    done
+}
+
+make_vdir() {
+    cat <<EOF
+#!/bin/sh
+ls -lb "$@"
+EOF
+}
+
+md5sums=('2cb6e8b34134038d86048e117f77765f'
+         'bb236dc600d2a9210a6912bd137a9d59')
+md5sums=('2cb6e8b34134038d86048e117f77765f'
+         '1f21fb36e1f87accfb807015bc8b9220')
+md5sums=('2cb6e8b34134038d86048e117f77765f'
+         'bd6e3ffe15ce045b5ccc4348fb40b5f0')
