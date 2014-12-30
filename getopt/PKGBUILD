@@ -7,14 +7,15 @@ license=('GPL-2')
 depends=('glibc')
 url="http://frodo.looijaard.name/project/getopt	"
 source=("http://frodo.looijaard.name/system/files/software/$pkgname/$pkgname-$pkgver.tar.gz")
+md5sums=('546acfdb67ba16b8658a45ade9a64d5d')
 
 build() {
-    cd $srcdir/$pkgname-$pkgver
+    cd "$srcdir/$pkgname-$pkgver"
     make
 }
 
 package () {
-    cp "$srcdir/$pkgname-$pkgver/$pkgname.1" "$pkgdir/$pkgname.1"
-    cp "$srcdir/$pkgname-$pkgver/$pkgname"   "$pkgdir/$pkgname"
+    mkdir -p "$pkgdir/usr/bin" "$pkgdir/usr/share/man/man1"
+    install -m655 "$srcdir/$pkgname-$pkgver/$pkgname.1" "$pkgdir/usr/share/man/man1/$pkgname.1"
+    install -m755 "$srcdir/$pkgname-$pkgver/$pkgname"   "$pkgdir/usr/bin/$pkgname"
 }
-md5sums=('546acfdb67ba16b8658a45ade9a64d5d')
