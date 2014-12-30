@@ -43,7 +43,6 @@ build() {
               --enable-bfs \
               --enable-minix \
               --enable-fdformat \
-              --enable-hwclock \
               --enable-wdctl \
               --enable-utmpdump \
               --enable-mesg \
@@ -54,7 +53,6 @@ build() {
               --enable-login \
               --enable-nologin \
               --enable-sulogin \
-              --enable-su \
               --enable-runuser \
               --enable-ul \
               --enable-pg \
