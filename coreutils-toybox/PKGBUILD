@@ -30,10 +30,10 @@ package() {
   IFS=$'\n'
   for file in $(find "$pkgdir" -type f);do
     case "$file" in
-      */tr)
+      */install)
       true
       ;;
-      *expr*)
+      */expr)
       true
       ;;
       */users)
