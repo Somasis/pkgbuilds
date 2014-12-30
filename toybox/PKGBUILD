@@ -9,9 +9,9 @@ license=('BSD')\
 url="http://landley.net/toybox/"
 #makedepends=('')
 source=("http://landley.net/toybox/downloads/$pkgname-$pkgver.tar.bz2" 'config')
-provides=('acpi' 'coreutils' 'diffutils' 'findutils' 'util-linux=2.23' 'procps-ng' 'inetutils' 'usbutils' 'grep' 'patch' 'which' 'systemd-sysvcompat' 'tar' 'rfkill' 'cpio')
-replaces=('acpi' 'coreutils' 'diffutils' 'findutils' 'util-linux>=2.23' 'procps-ng' 'inetutils' 'usbutils' 'grep' 'patch' 'which' 'systemd-sysvcompat' 'tar' 'rfkill' 'cpio')
-conflicts=('acpi' 'coreutils' 'diffutils' 'findutils' 'util-linux>=2.23' 'procps-ng' 'inetutils' 'usbutils' 'grep' 'patch' 'which' 'systemd-sysvcompat' 'tar' 'rfkill' 'cpio')
+provides=('acpi' 'coreutils' 'diffutils' 'util-linux=2.23' 'procps-ng' 'inetutils' 'usbutils' 'grep' 'patch' 'which' 'systemd-sysvcompat' 'tar' 'rfkill' 'cpio')
+replaces=('acpi' 'coreutils' 'diffutils' 'util-linux>=2.23' 'procps-ng' 'inetutils' 'usbutils' 'grep' 'patch' 'which' 'systemd-sysvcompat' 'tar' 'rfkill' 'cpio')
+conflicts=('acpi' 'coreutils' 'diffutils' 'util-linux>=2.23' 'procps-ng' 'inetutils' 'usbutils' 'grep' 'patch' 'which' 'systemd-sysvcompat' 'tar' 'rfkill' 'cpio')
 shim_utils=('vdir')
 
 build() {
@@ -55,4 +55,4 @@ EOF
 }
 
 md5sums=('1925d2222bd4f877d25e3ddaf4ee4f30'
-         '7c7143777958e91e3785fb65fe9d9227')
+         'f8386958f3649fcd83ee0d7b3e682ad6')

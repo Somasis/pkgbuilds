@@ -1,7 +1,7 @@
 #
 # Automatically generated make config: don't edit
 # ToyBox version: KCONFIG_VERSION
-# Tue Dec 30 01:54:24 2014
+# Tue Dec 30 02:16:33 2014
 #
 CONFIG_TOYBOX_CONTAINER=y
 CONFIG_TOYBOX_FIFREEZE=y
@@ -38,7 +38,7 @@ CONFIG_ECHO=y
 CONFIG_ENV=y
 CONFIG_EXPAND=y
 CONFIG_FALSE=y
-CONFIG_FIND=y
+# CONFIG_FIND is not set
 CONFIG_GREP=y
 CONFIG_HEAD=y
 CONFIG_ID=y
@@ -84,7 +84,7 @@ CONFIG_UNLINK=y
 # CONFIG_UUENCODE is not set
 CONFIG_WC=y
 CONFIG_WHO=y
-CONFIG_XARGS=y
+# CONFIG_XARGS is not set
 # CONFIG_XARGS_PEDANTIC is not set
 
 #
